@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="manifest" href="/manifest.json">
+    <title>About Us</title>
+    <style>
+        #home{
+            background-color: blueviolet;
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+            -moz-border-radius: 30px;
+            -webkit-border-radius: 30px;
+            border-radius: 30px;
+            height: 40px;
+        }
+        #navbar{
+            box-shadow: 0px 3px 3px 1px lightgray;
+            background-color: white;
+            text-decoration: none;
+            -moz-border-radius: 30px;
+            -webkit-border-radius: 30px;
+            border-radius: 30px;
+            border: 1px solid cornflowerblue;
+            margin-top: 25px;
+            padding: 8px;
+        }
+        #title{
+            text-decoration: none;
+            -moz-border-radius: 30px;
+            -webkit-border-radius: 30px;
+            border-radius: 30px;
+            color: slateblue;
+            font-weight: bold;
+        }
+        #title:hover{
+            color: black;
+        }
+        #navoptions{
+            text-decoration: none;
+            -moz-border-radius: 30px;
+            -webkit-border-radius: 30px;
+            border-radius: 30px;
+            color: blue;
+        }
+        #navoptions:hover{
+            font-weight: bold;
+            font-size: 110%;
+            background-color: lightgrey;
+        }
+        #heading{
+            margin: 5%;
+            padding-top: 2px;
+            padding-bottom: 1%;
+            text-decoration: none;
+            -moz-border-radius: 30px;
+            -webkit-border-radius: 30px;
+            border-radius: 30px;
+            padding-right: 2%;
+            padding-left: 2%;
+            box-shadow: 0px 8px 30px 8px yellow;
+            display: inline-block;
+            align-content: center;
+            /*text-shadow: 1.5px 1px slategrey;
+            font-family: "Comic Sans MS", cursive, sans-serif;*/
+            background-color: yellow;
+        }
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: white;
+        }
+
+        .flip-card {
+            background-color: transparent;
+            width: 300px;
+            height: 300px;
+            perspective: 1000px;
+            align-content: center;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            box-shadow: 2px 4px 8px 2px slategray;
+            align-content: center;
+        }
+
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            align-content: center;
+        }
+
+        .flip-card-front {
+            background-color: #bbb;
+            color: black;
+            align-content: center;
+        }
+
+        .flip-card-back {
+            background-color: #2980b9;
+            color: white;
+            transform: rotateY(180deg);
+            font-weight: bold;
+            align-content: center;
+        }
+        #profiles{
+            font-weight: bold;
+            text-shadow: 0.5px 0.5px blue;
+            color: yellowgreen;
+            align-content: center;
+        }
+    </style>
+    <script>
+        $(document).ready(function(){
+            $("#navbar").hide();
+            $("#navbar").fadeIn(1000);
+        });
+    </script>
+</head>
+<body align="center">
+    <nav class="navbar navbar-default" id="navbar">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>                        
+                </button>
+                <a class="navbar-brand" href="#" id="title"><img src="/imges/gp2.gif" alt="GangPayee"></a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li><a href="/" id="navoptions">Home</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="navoptions">something<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" id="navoptions">something</a></li>
+                            <li><a href="#" id="navoptions">something</a></li>
+                            <li><a href="#" id="navoptions">something</a></li>
+                        </ul>
+                    </li>
+                      <li><a href="#" id="navoptions">something</a></li>
+                      <li><a href="#" id="navoptions">something</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/account" id="navoptions">Account</a></li>
+                    <li><a href="/signup" id="navoptions"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                    <!--<li><a href="" id="navoptions"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>-->
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container" id="maindiv">
+        <div class="row">
+            <div class="col-lg-3 col-md-3"></div>
+            <div class="col-lg-6 col-md-6">
+                <div id="heading">
+                    <!--<h3>User Login</h3>-->
+                    <img src="/imges/dev.gif" alt="Developers">
+                </div>
+                <div><br></div>
+                <div class="row" align="center">
+                    <div class="col-lg-5 col-md-5 col-sm-5">
+                        <div class="flip-card">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <img align="center" src="/imges/gyani2.jpeg" alt="Abhigyan Ganguly" style="width:300px;height:300px;align-content: center;">
+                                </div>
+                                <div class="flip-card-back">
+                                    <br><h2><strong>Abhigyan Ganguly</strong></h2><br>
+                                    <p>Computer Science and Engineering</p>
+                                    <p>Final Year</p>
+                                    <p>G.C.E.T.T.S.</p>
+                                    <p>Full Stack Web Developer</p>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <p id="profiles"> <a href="https://github.com/abhigyan98">GitHub</a> || <a href="https://www.facebook.com/abhigyan.ganguly.1">Facebook</a> </p>
+                        <br>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2"></div>
+                    <div class="col-lg-5 col-md-5 col-sm-5">
+                        <div class="flip-card" align="center">
+                            <div class="flip-card-inner" align="center">
+                                <div class="flip-card-front" align="center">
+                                    <img align="center" src="/imges/baju.jpg" alt="Abhigyan Ganguly" style="width:300px;height:300px;align-content: center;">
+                                </div>
+                                <div class="flip-card-back">
+                                    <br><h2><strong>Shouvik Bajpayee</strong></h2><br>
+                                    <p>Computer Science and Engineering</p>
+                                    <p>Final Year</p>
+                                    <p>G.C.E.T.T.S.</p>
+                                    <p>Full Stack Web Developer</p>
+                                    <p>Android App Developer</p>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <p id="profiles" align="center"> <a href="https://github.com/shouvikbj">GitHub</a> || <a href="https://www.facebook.com/shouvikbj">Facebook</a> </p>
+                        <br>
+                    </div>
+                <br><br>
+            </div>
+            <div class="col-lg-3 col-md-3"></div>
+            </div> 
+        
+        </div>
+    </div>
+
+
+
+
+    <script src="/app.js"></script>
+</body>
+</html>

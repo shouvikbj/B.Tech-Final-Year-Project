@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="manifest" href="/manifest.json">
+    <title>My Account</title>
+    <style>
+        #home{
+            background-color: blueviolet;
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+            -moz-border-radius: 30px;
+            -webkit-border-radius: 30px;
+            border-radius: 30px;
+            height: 40px;
+        }
+        #navbar{
+            box-shadow: 0px 3px 3px 1px lightgray;
+            background-color: white;
+            text-decoration: none;
+            -moz-border-radius: 30px;
+            -webkit-border-radius: 30px;
+            border-radius: 30px;
+            border: 1px solid cornflowerblue;
+            margin-top: 25px;
+            padding: 8px;
+        }
+        #title{
+            text-decoration: none;
+            -moz-border-radius: 30px;
+            -webkit-border-radius: 30px;
+            border-radius: 30px;
+            color: slateblue;
+            font-weight: bold;
+        }
+        #title:hover{
+            color: black;
+        }
+        #navoptions{
+            text-decoration: none;
+            -moz-border-radius: 30px;
+            -webkit-border-radius: 30px;
+            border-radius: 30px;
+            color: blue;
+        }
+        #navoptions:hover{
+            font-weight: bold;
+            font-size: 110%;
+            background-color: lightgrey;
+        }
+        .crop{
+            display: inline-block;
+            width: 150px;
+            height: 150px;
+            overflow: hidden;
+            margin: 6px;
+            padding: 7%;
+            text-decoration: none;
+            -moz-border-radius: 50%;
+            -webkit-border-radius: 50%;
+            border-radius: 50%;
+            box-shadow: 2px 5px 10px 3px rgba(105, 90, 205, 0.692);
+        }
+        .avatar{
+            overflow: hidden;
+            width: 200px;
+            height: 200px;
+            margin: -50px 0 0 -50px;
+            object-fit: auto;
+            object-position: auto;
+        }
+        .avatar_modal{
+            vertical-align: middle;
+            width: 100%;
+            height: 100%;
+            box-shadow: 2px 5px 15px 10px rgba(105, 90, 205, 0.692);
+        }
+        #upload_img{
+            text-decoration: none;
+            -moz-border-radius: 30px;
+            -webkit-border-radius: 30px;
+            border-radius: 30px;
+            margin: 6px;
+            background-color: whitesmoke; 
+            font-weight: bold;
+            color: blue;
+            height: 30px;
+            position: relative;
+            transition: 0.3s;
+            border: 1px solid blueviolet;
+        }
+        #myModal{
+            background-color: rgba(0, 0, 0, 0.472);
+        }
+        #head-modal{
+            background-image: linear-gradient(blue, white);
+        }
+        #head-modal-text{
+            color: white;
+            font-weight: bold;
+        }
+        #foot-modal{
+            background-image: linear-gradient(white, yellow);
+        }
+        #close{
+            text-decoration: none;
+            -moz-border-radius: 30px;
+            -webkit-border-radius: 30px;
+            border-radius: 30px;
+            background-color: red;
+            color: white;
+            font-weight: bold;
+            border: 1px solid black;
+        }
+        #data-headings{
+            font-weight: bold;
+            font-family: "Comic Sans MS", cursive, sans-serif;
+            color: blueviolet;
+        }
+        #update-heading{
+            color: green;
+            font-weight: bold;
+            font-family: "Comic Sans MS", cursive, sans-serif;
+            text-decoration: none;
+            -moz-border-radius: 30px;
+            -webkit-border-radius: 30px;
+            border-radius: 30px;
+            box-shadow: 0px 2px 4px 1px slategray;
+            font-size: 150%;
+        }
+        input[type=text],select{
+            text-align: center;
+            text-decoration: none;
+            -moz-border-radius: 30px;
+            -webkit-border-radius: 30px;
+            border-radius: 30px;
+            width: 90%;
+            height: 40px;
+            transition: 0.3s;
+            color: slategray;
+            border: 1px solid darkcyan;
+            text-emphasis: padd;
+        }
+        input[type=text]:hover{
+            width: 95%;
+        }
+        input[type=number],select{
+            text-align: center;
+            text-decoration: none;
+            -moz-border-radius: 30px;
+            -webkit-border-radius: 30px;
+            border-radius: 30px;
+            width: 90%;
+            height: 40px;
+            transition: 0.3s;
+            color: slategray;
+            border: 1px solid darkcyan;
+        }
+        input[type=number]:hover{
+            width: 95%;
+        }
+        #submit-changes{
+            text-decoration: none;
+            -moz-border-radius: 30px;
+            -webkit-border-radius: 30px;
+            border-radius: 30px;
+            width: 50%;
+            height: 40px;
+            background-image: linear-gradient(white, blueviolet, white);
+            font-weight: bold;
+            color: white;
+            transition: 0.3s;
+            border: none;
+        }
+        #submit-changes:hover{
+            width: 45%;
+        }
+        #cancel-changes{
+            text-decoration: none;
+            -moz-border-radius: 30px;
+            -webkit-border-radius: 30px;
+            border-radius: 30px;
+            width: 50%;
+            height: 40px;
+            background-image: linear-gradient(white, red, white);
+            font-weight: bold;
+            color: white;
+            transition: 0.3s;
+            border: none;
+        }
+        #cancel-changes:hover{
+            width: 45%;
+        }
+        #change-detail{
+            text-decoration: none;
+            -moz-border-radius: 30px;
+            -webkit-border-radius: 30px;
+            border-radius: 30px;
+            width: 50%;
+            height: 40px;
+            transition: 0.3s;
+            background-image: linear-gradient(white,orange,white);
+            border: none;
+            font-weight: bold;
+            color: darkgreen;
+        }
+        #change-detail:hover{
+            width: 45%;
+        }
+        #non-updatable{
+            text-align: center;
+            text-decoration: none;
+            -moz-border-radius: 30px;
+            -webkit-border-radius: 30px;
+            border-radius: 30px;
+            width: 90%;
+            height: 40px;
+            transition: 0.3s;
+            color: slategray;
+            border: none;
+            font-weight: bold;
+        }
+        #maindiv{
+            text-decoration: none;
+            -moz-border-radius: 30px;
+            -webkit-border-radius: 30px;
+            border-radius: 30px;
+            border: 1px solid slategray;
+            width: 90%;
+            margin-bottom: 20px;
+        }
+        #file-picker{
+            text-decoration: none;
+            -moz-border-radius: 30px;
+            -webkit-border-radius: 30px;
+            border-radius: 30px;
+            border: 1px solid blueviolet;
+            background-color: whitesmoke;
+            color: blue;
+            font-weight: bold;
+        }
+        #upload-button{
+            text-decoration: none;
+            -moz-border-radius: 30px;
+            -webkit-border-radius: 30px;
+            border-radius: 30px;
+            border: 1px solid white;
+            background-color: slateblue;
+            color: white;
+            font-weight: bold;
+            height: 30px;
+        }
+        #profile-pic-info{
+            font-weight: bold;
+            color: rgb(74, 82, 98);
+        }
+    </style>
+    <script>
+        $(document).ready(function(){
+            $("#navbar").hide();
+            $("#navbar").fadeIn(1000);
+            $("#update-details").hide();
+            $("#upload-form").hide();
+            
+            $("#change-detail").click(function(){
+                /*$("#view_img").fadeOut(1000);*/
+                $("#show-details").slideUp(800);
+                $("#update-details").slideDown(800);
+            });
+            $("#cancel-changes").click(function(){
+                /*$("#view_img").fadeIn(900);*/
+                $("#show-details").slideDown(800);
+                $("#update-details").slideUp(800);
+            });
+            
+            $("#upload_img").click(function(){
+                $("#upload_img").hide();
+                $("#upload-form").show();
+            });
+
+        });
+    </script>
+</head>
+<body align="center">
+    <nav class="navbar navbar-default" id="navbar">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>                        
+                </button>
+                <a class="navbar-brand" href="/about" id="title"><img src="/imges/gp2.gif" alt="GangPayee"></a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li><a href="/" id="navoptions">Home</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="navoptions">something<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" id="navoptions">something</a></li>
+                            <li><a href="#" id="navoptions">something</a></li>
+                            <li><a href="#" id="navoptions">something</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#" id="navoptions">something</a></li>
+                    <li><a href="#" id="navoptions">something</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active"><a href="#" id="navoptions">Account</a></li>
+                    <!--<li><a href="/signup" id="navoptions"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>-->
+                    <li><a href="/logout" id="navoptions"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container" id="maindiv">
+        <div class="row">
+            <div class="col-lg-4 col-md-2 col-sm-2"></div>
+
+            <div class="col-lg-4 col-md-8 col-sm-8">
+                
+                <div class="crop" align="center">
+                    <img type="button" src="/imges/profilePics/{{ image }}" alt="Profile Image" class="avatar" data-toggle="modal" data-target="#myModal" align="center"><br>
+                </div>
+                
+                
+                                        
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog">
+                        
+                    <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header" id="head-modal">
+                                <button type="button" class="close" data-dismiss="modal" style="color: black; font-weight: bold; font-size: 250%;">&times;</button>
+                                <h3 class="modal-title" id="head-modal-text">{{ firstname }} {{ lastname }}</h3>
+                            </div>
+                            <div class="modal-body">
+                                <img src="/imges/profilePics/{{ image }}" alt="Profile Image" class="avatar_modal">
+                            </div>
+                            <div class="modal-footer" id="foot-modal">
+                                
+                                <button type="button" class="upload_img" id="upload_img">Upload New Profile Picture</button>
+                                <form id="upload-form" action="/uploadProfilePic" method="POST" enctype="multipart/form-data">
+
+                                    <!--<strong>Files:</strong><br>-->
+                                    <input id="file-picker" type="file" name="file" accept="image/*" align="left">
+                                    <p align="left" id="profile-pic-info">"provide photos in 1:1 aspect ratio for best results"</p>
+                                    <!--<div id="msg"></div>-->
+                                    <input type="submit" value="Upload!" id="upload-button" align="right">
+                                </form>
+
+                            </div>
+                        </div>
+                        
+                    </div>
+                    </div>
+                <div id="show-details">
+                    <h4 id="data-headings">First Name</h4>
+                    <input type="text" value="{{ firstname }}" disabled id="non-updatable">
+                    <h4 id="data-headings">Last Name</h4>
+                    <input type="text" value="{{ lastname }}" disabled id="non-updatable">
+                    <h4 id="data-headings">Email</h4>
+                    <input type="text" value="{{ email }}" disabled id="non-updatable">
+                    <h4 id="data-headings">Phone Number</h4>
+                    <input type="number" value="{{ phone }}" disabled id="non-updatable"><br><br>
+                    <button type="submit" id="change-detail">Update Details</button>
+                </div>
+                <div id="update-details">
+                    <h3 id="update-heading">Update Personal Informations</h3>
+                    <h4 id="data-headings">First Name</h4>
+                    <input type="text" value="{{ firstname }}">
+                    <h4 id="data-headings">Last Name</h4>
+                    <input type="text" value="{{ lastname }}">
+                    <h4 id="data-headings">Email</h4>
+                    <input type="text" value="{{ email }}">
+                    <h4 id="data-headings">Phone Number</h4>
+                    <input type="number" value="{{ phone }}"><br><br>
+                    <a href="/updateDetails"><button type="submit" id="submit-changes">Update</button></a><br><br>
+                    <a><button type="button" id="cancel-changes">Cancel</button></a>
+                </div>
+                <br><br><br><br>
+            </div>
+            
+            <div class="col-lg-4 col-md-2 col-sm-2"></div>
+        </div>
+    </div>
+
+
+
+
+
+    <script src="/app.js"></script>
+</body>
+</html>

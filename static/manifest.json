@@ -1,0 +1,43 @@
+{
+    "manifest_version": 2,
+    "name": "GangPayee",
+    "short_name": "GangPayee",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#FFFFFF",
+    "theme_color": "#FFFFFF",
+    "orientation": "portrait",
+    "icons": [
+        {
+            "src": "/pwa_logo/Icon-48.png",
+            "type": "image/png",
+            "sizes": "48x48"
+        },
+        {
+            "src": "/pwa_logo/Icon-72.png",
+            "type": "image/png",
+            "sizes": "72x72"
+        },
+        {
+            "src": "/pwa_logo/Icon-96.png",
+            "type": "image/png",
+            "sizes": "96x96"
+        },
+        {
+            "src": "/pwa_logo/Icon-144.png",
+            "type": "image/png",
+            "sizes": "144x144"
+        },
+        {
+            "src": "/pwa_logo/Icon-196.png",
+            "type": "image/png",
+            "sizes": "196x196"
+        },
+        {
+            "src": "/pwa_logo/Icon-512.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        }
+    ],
+    "scope": "/"
+}
