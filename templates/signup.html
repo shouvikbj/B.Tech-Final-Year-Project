@@ -182,7 +182,7 @@
             -webkit-border-radius: 30px;
             border-radius: 30px;
             border: 1px solid cornflowerblue;
-            margin-top: 25px;
+            margin-top: 15px;
             padding: 8px;
         }
         #title{
@@ -217,6 +217,18 @@
             /*box-shadow: 1px 5px 10px 2px slategrey;*/
             border-radius: 5px;
         }
+        .preloader{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background-image: url('/pwa_logo/loading.gif');
+            background-repeat: no-repeat; 
+            background-color: rgba(255, 255, 255, 0.966);
+            background-position: center;
+        }
     </style>
     <script>
         /*function msg(){
@@ -234,10 +246,15 @@
             });
             $("#navbar").hide();
             $("#navbar").fadeIn(1000);
+            //$('.preloader').delay(2000).fadeOut();
+            $(window).on('load',function(){
+                $(".preloader").fadeOut(1500);
+            });
         });
     </script>
 </head>
 <body align="center" onload="msg()">
+    <div class="preloader"></div>
     <div>
         <nav class="navbar navbar-default" id="navbar">
             <div class="container-fluid">
