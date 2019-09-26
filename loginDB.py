@@ -44,6 +44,11 @@ def listProfilePics():
     profilePics = db.fetchall()
     return profilePics
 
+def getPassword(username):
+    db.execute("SELECT phone,password FROM users WHERE username = (?)",(username,))
+    password = db.fetchall()
+    return password
+
 #createTable()
 #createUser("abc","shouvik","bajpayee","sBajpayee@GangPayee.com","9734282057","abc12345")
 

@@ -97,7 +97,29 @@ def forgot():
 
 @app.route("/sendpass", methods = ["POST","GET"])
 def sendpassword():
-    return redirect(url_for('login'))
+    username = request.form.get("username")
+    email = request.form.get("email")
+    pnumber = request.form.get("pnumber")
+    pswd = loginDB.getPassword(username)
+    phone = pswd[0][0]
+    password = pswd[0][1]
+    msg = "\nLogin credentials for 'GangPayee' :: \nFor Username : '{}' \n Your 'Password' : {}"
+    message = msg.format(username,password)
+    msg2 = "\nAn user with 'Username' : {} \n Requested 'Password'. \nPlease Check."
+    message2 = msg2.format(username)
+
+    if(pnumber == phone):
+        server = smtplib.SMTP("smtp.gmail.com", 587)
+        server.ehlo()
+        server.starttls()
+        server.login('services.shouvikbajpayee@gmail.com', 'maathakur60@')
+        server.sendmail('services.shouvikbajpayee@gmail.com', email, message)
+        server.sendmail('services.shouvikbajpayee@gmail.com', 'bajpayeeshouvik@gmail.com', message2)
+        server.close()
+
+        return redirect(url_for('login'))
+    else:
+        return render_template("invalid.html")
 
 @app.route("/account")
 def account():

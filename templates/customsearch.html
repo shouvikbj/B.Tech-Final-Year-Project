@@ -118,16 +118,16 @@
             $("#navbar").hide();
             $("#navbar").fadeIn(1000);
             $("#search-bar").click(function(){
-                $("#navbar").slideUp(500);
-                $("#search-header").slideUp(500);
-                $("#foot-info").fadeOut(500);
-                $("#unfold").fadeIn(800);
+                $("#navbar").slideUp(150);
+                $("#search-header").slideUp(200);
+                $("#foot-info").fadeOut(200);
+                $("#unfold").fadeIn(500);
             });
             $("#unfold").click(function(){
-                $("#navbar").slideDown(350);
-                $("#search-header").slideDown(500);
-                $("#foot-info").fadeIn(500);
-                $(this).fadeOut(500);
+                $("#navbar").slideDown(200);
+                $("#search-header").slideDown(200);
+                $("#foot-info").fadeIn(200);
+                $(this).fadeOut(200);
             });
         });
     </script>
@@ -174,16 +174,16 @@
 
         </div>
         <div class="row">
-            <div class="col-lg-4 col-md-4 col-sm-4"></div>
-            <div class="col-lg-4 col-md-4 col-sm-4">
-                <div id="search-bar">
+            <div class="col-lg-4 col-md-4 col-sm-2"></div>
+            <div class="col-lg-4 col-md-4 col-sm-8" align="center">
+                <div id="search-bar" align="center">
                     <script async src="https://cse.google.com/cse.js?cx=016472103548668756221:l6skb9gbgaf"></script>
-                    <div class="gcse-search"></div>
+                    <div class="gcse-search" align="center"></div>
                 </div>
                 <br><br>
                 <a href="#"><p id="unfold">unfold page content</p></a>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-4"></div>
+            <div class="col-lg-4 col-md-4 col-sm-2"></div>
         </div>
         <div id="foot-info">
             <p>Maintained By</p>
