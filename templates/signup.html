@@ -175,15 +175,16 @@
             height: 40px;
         }
         #navbar{
-            box-shadow: 0px 3px 3px 1px lightgray;
-            background-color: white;
-            text-decoration: none;
+            /*box-shadow: 0px 3px 3px 1px lightgray;*/
+            background-color: none;
+            border-top: none;
+            /*text-decoration: none;
             -moz-border-radius: 30px;
             -webkit-border-radius: 30px;
-            border-radius: 30px;
-            border: 1px solid cornflowerblue;
-            margin-top: 15px;
-            padding: 8px;
+            border-radius: 30px;*/
+            /*border: 1px solid cornflowerblue;*/
+            margin-top: 5px;
+            padding: 4px;
         }
         #title{
             text-decoration: none;
@@ -235,6 +236,9 @@
             alert("!! NOTICE !!\n\nMust enter valid \"Email Id\" and \"Phone Number\".\nEmail and Phone Number will be used to provide you your \"Username\" and will be used for future \"Contacting\".");
         }*/
         $(document).ready(function(){
+            $(window).ready(function(){
+                $(".preloader").fadeOut(1500);
+            });
             $("#email").click(function(){
                 alert("Must enter valid \"Email\" \n\nThis \"Email Id\" will be used to contact you.");
             });
@@ -247,9 +251,7 @@
             $("#navbar").hide();
             $("#navbar").fadeIn(1000);
             //$('.preloader').delay(2000).fadeOut();
-            $(window).on('load',function(){
-                $(".preloader").fadeOut(1500);
-            });
+            
         });
     </script>
 </head>
@@ -278,7 +280,7 @@
                             </ul>
                         </li>
                         <li><a href="#" id="navoptions">something</a></li>
-                        <li><a href="#" id="navoptions">something</a></li>
+                        <li><a href="/customsearch" id="navoptions">Search The Web</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="/account" id="navoptions">Account</a></li>

@@ -1,0 +1,7 @@
+//API key for custom search engine
+
+API_KEY = 'AIzaSyAl-aVgBOZmsh1qTPg_H32bbP24av_8yFk'
+
+//search engine id
+
+016472103548668756221:l6skb9gbgaf

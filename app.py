@@ -141,6 +141,13 @@ def uploadProfilePic():
 def updateDetails():
     return redirect(url_for('account'))
 
+@app.route("/customsearch")
+def customsearch():
+    if 'username' in session:
+        return render_template("customsearch.html")
+    else:
+        return redirect(url_for('login'))
+
 @app.route("/logout")
 def logout():
     session.pop('username', None)
