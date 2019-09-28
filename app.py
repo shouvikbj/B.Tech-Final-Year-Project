@@ -1,7 +1,7 @@
 from flask import Flask,render_template,redirect,request,url_for,session
 import csv
 import delete as dlt
-import loginDB
+import loginDB,postDB
 import smtplib
 import os
 
@@ -20,7 +20,9 @@ def index():
 @app.route("/home")
 def home():
     if 'username' in session:
-        return render_template("index.html")
+        user = loginDB.getUser(session['username'])
+        image = user[0][6]
+        return render_template("index.html", image=image)
     else:
         return redirect(url_for('login'))
 
@@ -130,9 +132,10 @@ def account():
         lastname = user[0][2]
         email = user[0][3]
         phone = user[0][4]
+        password = user[0][5]
         image = user[0][6]
 
-        return render_template("account.html",firstname=firstname,lastname=lastname,email=email,phone=phone,image=image)
+        return render_template("account.html",firstname=firstname,lastname=lastname,email=email,phone=phone,image=image,password=password)
     else:
         return redirect(url_for('login'))
 
@@ -159,9 +162,50 @@ def uploadProfilePic():
     else:
         return redirect(url_for('login'))
 
+@app.route("/postQuestion", methods=["POST"])
+def postQuestion():
+    if 'username' in session:
+        username = session['username']
+        img_target = 'static/posts/images'
+        vdo_target = 'static/posts/videos'
+
+        shortq = request.form.get("short-q")
+        longq = request.form.get("long-q")
+
+        img_file = request.files.get("imgfile")
+        vdo_file = request.files.get("vdofile")
+
+        img_filename = ""
+        vdo_filename = ""
+
+        if(img_file):
+            img_filename = img_file.filename
+            img_destination = "/".join([img_target,img_filename])
+            img_file.save(img_destination)
+        if(vdo_file):
+            vdo_filename = vdo_file.filename
+            vdo_destination = "/".join([vdo_target,vdo_filename])
+            vdo_file.save(vdo_destination)
+        postDB.createPost(username,shortq,longq,img_filename,vdo_filename)
+
+        return redirect(url_for('home'))
+
+    else:
+        return redirect(url_for('login'))
+
 @app.route("/updateDetails", methods = ["POST","GET"])
 def updateDetails():
-    return redirect(url_for('account'))
+    if 'username' in session:
+        username = session['username']
+        firstname = request.form.get("firstname")
+        lastname = request.form.get("lastname")
+        phone = request.form.get("phone")
+        password = request.form.get("password")
+        loginDB.updateDetails(username,firstname,lastname,phone,password)
+
+        return redirect(url_for('account'))
+    else:
+        return redirect(url_for('login'))
 
 @app.route("/customsearch")
 def customsearch():

@@ -148,9 +148,9 @@
             border: 1px solid darkcyan;
             text-emphasis: padd;
         }
-        input[type=text]:hover{
+        /*input[type=text]:hover{
             width: 95%;
-        }
+        }*/
         input[type=number],select{
             text-align: center;
             text-decoration: none;
@@ -163,8 +163,35 @@
             color: slategray;
             border: 1px solid darkcyan;
         }
-        input[type=number]:hover{
+        /*input[type=number]:hover{
             width: 95%;
+        }*/
+        input[type=password],select{
+            text-align: center;
+            text-decoration: none;
+            -moz-border-radius: 30px;
+            -webkit-border-radius: 30px;
+            border-radius: 30px;
+            width: 78%;
+            height: 40px;
+            transition: 0.3s;
+            color: slategray;
+            border: 1px solid darkcyan;
+        }
+        /*input[type=password]:hover{
+            width: 95%;
+        }*/
+        input[type=''],select{
+            text-align: center;
+            text-decoration: none;
+            -moz-border-radius: 30px;
+            -webkit-border-radius: 30px;
+            border-radius: 30px;
+            width: 78%;
+            height: 40px;
+            transition: 0.3s;
+            color: slategray;
+            border: 1px solid darkcyan;
         }
         #submit-changes{
             text-decoration: none;
@@ -301,7 +328,17 @@
                 $("#upload_img").hide();
                 $("#upload-form").show();
             });
-
+            $("#hide").hide();
+            $("#view").click(function(){
+                $("#view").hide();
+                $("#hide").show();
+                $("#password").attr('type','');
+            });
+            $("#hide").click(function(){
+                $("#hide").hide();
+                $("#view").show();
+                $("#password").attr('type','password');
+            });
         });
     </script>
 </head>
@@ -379,7 +416,7 @@
                         </div>
                         
                     </div>
-                    </div>
+                </div>
                 <div id="show-details">
                     <h4 id="data-headings">First Name</h4>
                     <input type="text" value="{{ firstname }}" disabled id="non-updatable">
@@ -391,19 +428,23 @@
                     <input type="number" value="{{ phone }}" disabled id="non-updatable"><br><br>
                     <button type="submit" id="change-detail">Update Details</button>
                 </div>
-                <div id="update-details">
-                    <h3 id="update-heading">Update Personal Informations</h3>
-                    <h4 id="data-headings">First Name</h4>
-                    <input type="text" value="{{ firstname }}">
-                    <h4 id="data-headings">Last Name</h4>
-                    <input type="text" value="{{ lastname }}">
-                    <h4 id="data-headings">Email</h4>
-                    <input type="text" value="{{ email }}">
-                    <h4 id="data-headings">Phone Number</h4>
-                    <input type="number" value="{{ phone }}"><br><br>
-                    <a href="/updateDetails"><button type="submit" id="submit-changes">Update</button></a><br><br>
-                    <a><button type="button" id="cancel-changes">Cancel</button></a>
-                </div>
+                <form action="/updateDetails" method="post">
+                    <div id="update-details">
+                        <h3 id="update-heading">Update Personal Informations</h3>
+                        <h4 id="data-headings">First Name</h4>
+                        <input type="text" name="firstname" id="firstname" value="{{ firstname }}">
+                        <h4 id="data-headings">Last Name</h4>
+                        <input type="text" name="lastname" id="lastname" value="{{ lastname }}">
+                        <h4 id="data-headings">Phone Number</h4>
+                        <input type="number" name="phone" id="phone" value="{{ phone }}">
+                        <h4 id="data-headings">Password</h4>
+                        <p><input type="password" name="password" id="password" value="{{ password }}"> <img src="/imges/icons/view32.png" alt="view" id="view"><img src="/imges/icons/hide32.png" alt="hide" id="hide"></p>
+                        <br><br>
+                        <button type="submit" id="submit-changes">Update</button><br><br>
+                        <a><button type="button" id="cancel-changes">Cancel</button></a>
+                    </div>
+                </form>
+                
                 <br><br><br><br>
             </div>
             

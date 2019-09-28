@@ -49,6 +49,13 @@ def getPassword(username):
     password = db.fetchall()
     return password
 
+def updateDetails(username,firstname,lastname,phone,password):
+    db.execute("UPDATE users SET firstname=(?),lastname=(?),phone=(?),password=(?) WHERE username=(?)",(firstname,lastname,phone,password,username))
+    db.execute("UPDATE usersBackUp SET firstname=(?),lastname=(?),phone=(?),password=(?) WHERE username=(?)",(firstname,lastname,phone,password,username))
+    con.commit()
+
+
+
 #createTable()
 #createUser("abc","shouvik","bajpayee","sBajpayee@GangPayee.com","9734282057","abc12345")
 

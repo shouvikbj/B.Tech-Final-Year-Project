@@ -72,20 +72,105 @@
             background-color: rgba(255, 255, 255, 0.966);
             background-position: center;
         }
+        #post{
+            text-decoration: none;
+            -moz-border-radius: 30px;
+            -webkit-border-radius: 30px;
+            border-radius: 30px;
+            box-shadow: 0px 4px 10px 1px slategray;
+            margin: -5px;
+            font-family: "Comic Sans MS", cursive, sans-serif;
+            color: slategray;
+        }
+        #post-heading{
+            margin-bottom: -20px;
+        }
+        #profile-image{
+            text-decoration: none;
+            -moz-border-radius: 30px;
+            -webkit-border-radius: 30px;
+            border-radius: 30px;
+            height: 60px;
+            width: 60px;
+            margin-top: 8px;
+            margin-bottom: -10px;
+            padding: 0px;
+        }
+        #heading-image{
+            display: inline-block;
+            object-fit: auto;
+            object-position: auto;
+            padding-top: 2px;
+        }
+        #profile-name{
+            
+            padding-top: 10px;
+            margin-left: -10px;
+        }
+        #short-desc{
+            margin: -20px;
+        }
+        #post-body{
+            margin-top: -10px;
+            margin-bottom: 5px;
+        }
+        #short-q{
+            width: 100%;
+            height: 30px;
+            /*text-decoration: none;
+            -moz-border-radius: 30px;
+            -webkit-border-radius: 30px;
+            border-radius: 30px;*/
+            border: 1px solid rgba(0, 4, 255, 0.657);
+            font-family: "Comic Sans MS", cursive, sans-serif;
+        }
+        #long-q{
+            width: 100%;
+            height: 150px;
+            /*text-decoration: none;
+            -moz-border-radius: 30px;
+            -webkit-border-radius: 30px;
+            border-radius: 30px;*/
+            border: 1px solid rgba(0, 4, 255, 0.657);
+            font-family: "Comic Sans MS", cursive, sans-serif;
+        }
+        #q-desc{
+            align-content: left;
+        }
+        #file-picker{
+            width: 100%;
+            border: 1px solid rgba(0, 4, 255, 0.657);
+        }
+
     </style>
     <script>
         $(document).ready(function(){
             $(window).ready(function(){
-                $(".preloader").delay(1500).fadeOut(500);
+                //$(".preloader").delay(1500).fadeOut(500);
+                $(".preloader").hide(); //have change code here finally """WATCH OUT"""
             });
             $("#navbar").hide();
             $("#navbar").fadeIn(1000);
             //$('.preloader').delay(2000).fadeOut();
-            
+                        
+            $(".post-body").hide();
+            $(".read-less").hide();
+            $(".post").on('click',function(event){
+                event.stopPropagation();
+                event.stopImmediatePropagation();
+                $('.post-body', this).slideToggle(300);
+                $('.read-more', this).toggle(300);
+                $('.read-less', this).toggle(300);
+            });
+            /*var post = $('#post');
+            $("#post-a-post").on('click', function(){
+                //$("#maindiv").append(post);
+                $("#maindiv").append(post.clone());
+            });*/
         });
     </script>
 </head>
-<body align="center">
+<body align="center" id="body">
     <div class="preloader"></div>
     <nav class="navbar navbar-default" id="navbar">
         <div class="container-fluid">
@@ -119,8 +204,83 @@
             </div>
         </div>
     </nav>
-    <h1>This is the Home page</h1>
+    
+    <div class="container" id="maindiv">
+            <div align="right" id="post-a-post">
+                <p style="color: cornflowerblue" data-toggle="modal" data-target="#myModal">add new post</p>
+            </div><br>
+            <!--Modal contents start here-->
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog">
+                    
+                <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header" id="head-modal">
+                            <button type="button" class="close" data-dismiss="modal" style="color: black; font-weight: bold; font-size: 250%;">&times;</button>
+                            <h4 class="modal-title" id="head-modal-text">Post your question</h4>
+                        </div>
+                        <div class="modal-body container">
+                            <form action="/postQuestion" method="post"  enctype="multipart/form-data">
+                                <p align="left" style="color: rgba(255, 0, 0, 0.918)">* marked fields are required</p>
+                                <h5 id="q-desc">Short description of question <span style="color: red">*</span></h5>
+                                <input type="text" name="short-q" id="short-q" required="true">
+                                <h5 id="q-desc">Describe your question <span style="color: red">*</span></h5>
+                                <textarea type="text" name="long-q" id="long-q" required="true"></textarea>
+                                <h5 id="q-desc">Provide image for your question</h5>
+                                <input id="file-picker" type="file" name="imgfile" accept="image/*">
+                                <h5 id="q-desc">Provide video for your question</h5>
+                                <input id="file-picker" type="file" name="vdofile" accept="video/*"><br>
+                                <input type="submit" value="Post Question">
+                            </form>
+                        </div>
+                        <!--<div class="modal-footer" id="foot-modal">
+                            
+                            <button type="button" class="upload_img" id="upload_img">Upload New Profile Picture</button>
+                            <form id="upload-form" action="/uploadProfilePic" method="POST" enctype="multipart/form-data">
 
+                                <strong>Files:</strong><br>
+                                <input id="file-picker" type="file" name="file" accept="image/*" align="left">
+                                <p align="left" id="profile-pic-info">"provide photos in 1:1 aspect ratio for best results"</p>
+                                <div id="msg"></div>
+                                <input type="submit" value="Upload!" id="upload-button" align="right">
+                            </form>
+                        </div>-->
+                    </div>
+                    
+                </div>
+            </div>
+            <!--Modal contents end here-->
+
+            <div>
+                {% for i in range(3) %}
+                    <div class="post" id="post">
+                        <div class="container small-post" id="small-post">
+                            <div class="row" id="post-heading">
+                                <div id="heading-image">
+                                    <a href="/imges/profilePics/{{ image }}"><img src="/imges/profilePics/{{ image }}" alt="profile pic" id="profile-image"></a>
+                                </div>
+                                <div id="profile-name">
+                                    <h4 style="color: rgba(0, 72, 255, 0.816)">{{ fullname }}</h4>
+                                </div>
+                                <hr>
+                            </div>
+                            <div class="container short-desc" id="short-desc">
+                                <h4>Short description of the post. Trsathe aro onek onek onek onek onek onek onek hijibiji kotha..</h4>
+                                <p style="color: rgba(0, 0, 255, 0.653);" class="read-more" id="read-more">read more..</p>
+                                <p style="color: rgba(255, 0, 0, 0.653);" class="read-less" id="read-less">shrink text..</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="container post-body" id="post-body">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, nihil! Et mollitia veritatis nesciunt nisi libero blanditiis omnis, architecto ullam optio totam deserunt molestiae nihil illum, tempore cumque odio repellat.</p>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique dicta, modi animi a mollitia iusto. Delectus expedita harum adipisci accusamus eos veniam, quis quas. Quos accusantium sunt qui reprehenderit doloribus?</p>
+
+                        </div>
+                    </div><br>
+                {% endfor %}
+            </div>
+            <div></div>
+    </div>
 
 
 
