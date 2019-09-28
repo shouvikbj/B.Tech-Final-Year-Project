@@ -135,19 +135,40 @@
             font-family: "Comic Sans MS", cursive, sans-serif;
         }
         #q-desc{
-            align-content: left;
+            font-family: "Comic Sans MS", cursive, sans-serif;
         }
         #file-picker{
             width: 100%;
             border: 1px solid rgba(0, 4, 255, 0.657);
+        }
+        #img-q{
+            width: 100%;
+            height: 100%;
+            padding: 10px;
+            margin: 10px;
+        }
+        #vdo-q{
+            width: 100%;
+            height: 100%;
+            padding: 10px;
+            margin: 10px;
+        }
+        #post-q{
+            text-decoration: none;
+            -moz-border-radius: 30px;
+            -webkit-border-radius: 30px;
+            border-radius: 30px;
+            font-weight: bold;
+            border: 1px solid green;
+            background-color: rgba(0, 128, 0, 0.693);
+            color: white;
         }
 
     </style>
     <script>
         $(document).ready(function(){
             $(window).ready(function(){
-                //$(".preloader").delay(1500).fadeOut(500);
-                $(".preloader").hide(); //have change code here finally """WATCH OUT"""
+                $(".preloader").delay(1500).fadeOut(500);
             });
             $("#navbar").hide();
             $("#navbar").fadeIn(1000);
@@ -155,12 +176,21 @@
                         
             $(".post-body").hide();
             $(".read-less").hide();
+            $(".media").hide();
+            $(".hide-media").hide();
             $(".post").on('click',function(event){
                 event.stopPropagation();
                 event.stopImmediatePropagation();
-                $('.post-body', this).slideToggle(300);
+                $('.post-body', this).slideToggle(500);
                 $('.read-more', this).toggle(300);
                 $('.read-less', this).toggle(300);
+                $('.post-body', this).on('click', function(event){
+                    event.stopPropagation();
+                    event.stopImmediatePropagation();
+                    $('.media', this).slideToggle(400);
+                    $('.show-media', this).toggle(300);
+                    $('.hide-media', this).toggle(300);
+                })
             });
             /*var post = $('#post');
             $("#post-a-post").on('click', function(){
@@ -230,7 +260,7 @@
                                 <input id="file-picker" type="file" name="imgfile" accept="image/*">
                                 <h5 id="q-desc">Provide video for your question</h5>
                                 <input id="file-picker" type="file" name="vdofile" accept="video/*"><br>
-                                <input type="submit" value="Post Question">
+                                <input type="submit" value="Post Question" id="post-q">
                             </form>
                         </div>
                         <!--<div class="modal-footer" id="foot-modal">
@@ -252,29 +282,48 @@
             <!--Modal contents end here-->
 
             <div>
-                {% for i in range(3) %}
+                {% for i in range(post|length) %}
                     <div class="post" id="post">
                         <div class="container small-post" id="small-post">
                             <div class="row" id="post-heading">
                                 <div id="heading-image">
-                                    <a href="/imges/profilePics/{{ image }}"><img src="/imges/profilePics/{{ image }}" alt="profile pic" id="profile-image"></a>
+                                    <a href="/imges/profilePics/{{ post[i][0] }}"><img src="/imges/profilePics/{{ post[i][0] }}" alt="profile pic" id="profile-image"></a>
                                 </div>
                                 <div id="profile-name">
-                                    <h4 style="color: rgba(0, 72, 255, 0.816)">{{ fullname }}</h4>
+                                    <h4 style="color: rgba(0, 72, 255, 0.816)">{{ post[i][1] }}</h4>
                                 </div>
                                 <hr>
                             </div>
                             <div class="container short-desc" id="short-desc">
-                                <h4>Short description of the post. Trsathe aro onek onek onek onek onek onek onek hijibiji kotha..</h4>
+                                <h4>{{ post[i][2] }}</h4>
                                 <p style="color: rgba(0, 0, 255, 0.653);" class="read-more" id="read-more">read more..</p>
                                 <p style="color: rgba(255, 0, 0, 0.653);" class="read-less" id="read-less">shrink text..</p>
                             </div>
                         </div>
                         <hr>
                         <div class="container post-body" id="post-body">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, nihil! Et mollitia veritatis nesciunt nisi libero blanditiis omnis, architecto ullam optio totam deserunt molestiae nihil illum, tempore cumque odio repellat.</p>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique dicta, modi animi a mollitia iusto. Delectus expedita harum adipisci accusamus eos veniam, quis quas. Quos accusantium sunt qui reprehenderit doloribus?</p>
+                            <p>{{ post[i][3] }}</p>
 
+                            <p class="show-media" id="show-media" style="color: rgba(0, 0, 255, 0.653)">show media..</p>
+                            <p class="hide-media" id="hide-media" style="color: rgba(255, 0, 0, 0.653)">hide media..</p>
+
+                            <div class="container row media" id="media">
+                                {% if post[i][4] is defined %}
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" align="center">
+                                        <a href="/posts/images/{{ post[i][4] }}"><img src="/posts/images/{{ post[i][4] }}" alt="" id="img-q"></a>
+                                    </div>
+                                {% endif %}
+
+                                <!--<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>-->
+
+                                {% if post[i][5] is defined %}
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                        <video controls height="100%" width="100%" id="vdo-q" align="center">
+                                            <source src="/posts/videos/{{ post[i][5] }}" type="video/mp4">
+                                        </video>
+                                    </div>
+                                {% endif %}
+                            </div>
                         </div>
                     </div><br>
                 {% endfor %}

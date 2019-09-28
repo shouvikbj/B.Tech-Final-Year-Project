@@ -19,10 +19,15 @@ def createTable():
 
 def createPost(username,shortq,longq,img,vdo):
     db.execute("INSERT INTO post VALUES (?,?,?,?,?)",(username,shortq,longq,img,vdo))
-    db.execute("INSERT INTO post VALUES (?,?,?,?,?)",(username,shortq,longq,img,vdo))
+    db.execute("INSERT INTO postBackUp VALUES (?,?,?,?,?)",(username,shortq,longq,img,vdo))
     con.commit()
 
-
+def getAllPost():
+    db.execute("""
+        SELECT u.image,p.username,p.shortq,p.longq,p.img,p.vdo FROM users AS u INNER JOIN post AS p ON (p.username=u.username)
+    """)
+    post = db.fetchall()
+    return post
 
 
 #createTable()

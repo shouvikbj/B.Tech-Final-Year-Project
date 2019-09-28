@@ -20,9 +20,9 @@ def index():
 @app.route("/home")
 def home():
     if 'username' in session:
-        user = loginDB.getUser(session['username'])
-        image = user[0][6]
-        return render_template("index.html", image=image)
+        post = postDB.getAllPost()
+
+        return render_template("index.html", post=post)
     else:
         return redirect(url_for('login'))
 
