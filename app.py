@@ -201,9 +201,12 @@ def updateDetails():
         lastname = request.form.get("lastname")
         phone = request.form.get("phone")
         password = request.form.get("password")
+        oldpass = loginDB.getPassword(username)
         loginDB.updateDetails(username,firstname,lastname,phone,password)
-
-        return redirect(url_for('account'))
+        if(password == oldpass[0][1]):
+            return redirect(url_for('account'))
+        else:
+            return redirect(url_for('logout'))
     else:
         return redirect(url_for('login'))
 
