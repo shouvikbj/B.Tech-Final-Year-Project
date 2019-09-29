@@ -163,6 +163,10 @@
             background-color: rgba(0, 128, 0, 0.693);
             color: white;
         }
+        #no-media{
+            color: rgba(0, 13, 255, 0.455);
+            margin: 15px;
+        }
 
     </style>
     <script>
@@ -249,7 +253,7 @@
                             <button type="button" class="close" data-dismiss="modal" style="color: black; font-weight: bold; font-size: 250%;">&times;</button>
                             <h4 class="modal-title" id="head-modal-text">Post your question</h4>
                         </div>
-                        <div class="modal-body container">
+                        <div class="modal-body container" style="width: 100%;">
                             <form action="/postQuestion" method="post"  enctype="multipart/form-data">
                                 <p align="left" style="color: rgba(255, 0, 0, 0.918)">* marked fields are required</p>
                                 <h5 id="q-desc">Short description of question <span style="color: red">*</span></h5>
@@ -308,20 +312,32 @@
                             <p class="hide-media" id="hide-media" style="color: rgba(255, 0, 0, 0.653)">hide media..</p>
 
                             <div class="container row media" id="media">
-                                {% if post[i][4] is defined %}
+                                {% if post[i][4]|length %}
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" align="center">
                                         <a href="/posts/images/{{ post[i][4] }}"><img src="/posts/images/{{ post[i][4] }}" alt="" id="img-q"></a>
                                     </div>
+                                {% else %}
+                                    
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" align="center">
+                                        <p id="no-media">No photo available for this post</p>
+                                    </div>
+                                    
                                 {% endif %}
 
                                 <!--<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>-->
 
-                                {% if post[i][5] is defined %}
+                                {% if post[i][5]|length %}
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                         <video controls height="100%" width="100%" id="vdo-q" align="center">
                                             <source src="/posts/videos/{{ post[i][5] }}" type="video/mp4">
                                         </video>
                                     </div>
+                                {% else %}
+                                    
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" align="center">
+                                        <p id="no-media">No video available for this post</p>
+                                    </div>
+                                    
                                 {% endif %}
                             </div>
                         </div>
