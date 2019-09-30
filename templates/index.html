@@ -142,16 +142,21 @@
             border: 1px solid rgba(0, 4, 255, 0.657);
         }
         #img-q{
-            width: 100%;
-            height: 100%;
-            padding: 10px;
-            margin: 10px;
+            width: 80%;
+            height: 80%;
+            text-decoration: none;
+            -moz-border-radius: 30px;
+            -webkit-border-radius: 30px;
+            border-radius: 30px;
         }
         #vdo-q{
-            width: 100%;
-            height: 100%;
-            padding: 10px;
-            margin: 10px;
+            width: 80%;
+            height: 80%;
+            text-decoration: none;
+            -moz-border-radius: 30px;
+            -webkit-border-radius: 30px;
+            border-radius: 30px;
+            margin-bottom: 5px;
         }
         #post-q{
             text-decoration: none;
@@ -311,30 +316,30 @@
                             <p class="show-media" id="show-media" style="color: rgba(0, 0, 255, 0.653)">show media..</p>
                             <p class="hide-media" id="hide-media" style="color: rgba(255, 0, 0, 0.653)">hide media..</p>
 
-                            <div class="container row media" id="media">
+                            <div class="container media" id="media">
                                 {% if post[i][4]|length %}
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" align="center">
+                                    <div align="center">
                                         <a href="/posts/images/{{ post[i][4] }}"><img src="/posts/images/{{ post[i][4] }}" alt="" id="img-q"></a>
                                     </div>
                                 {% else %}
                                     
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" align="center">
+                                    <div align="center">
                                         <p id="no-media">No photo available for this post</p>
                                     </div>
                                     
                                 {% endif %}
 
-                                <!--<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>-->
+                                <br>
 
                                 {% if post[i][5]|length %}
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                    <div>
                                         <video controls height="100%" width="100%" id="vdo-q" align="center">
                                             <source src="/posts/videos/{{ post[i][5] }}" type="video/mp4">
                                         </video>
                                     </div>
                                 {% else %}
                                     
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" align="center">
+                                    <div align="center">
                                         <p id="no-media">No video available for this post</p>
                                     </div>
                                     
