@@ -74,9 +74,9 @@
         }
         #post{
             text-decoration: none;
-            -moz-border-radius: 30px;
-            -webkit-border-radius: 30px;
-            border-radius: 30px;
+            -moz-border-radius: 10px;
+            -webkit-border-radius: 10px;
+            border-radius: 10px;
             box-shadow: 0px 4px 10px 1px slategray;
             margin: -5px;
             font-family: "Comic Sans MS", cursive, sans-serif;
@@ -95,6 +95,12 @@
             margin-top: 8px;
             margin-bottom: -10px;
             padding: 0px;
+        }
+        .avatar_modal{
+            vertical-align: middle;
+            width: 100%;
+            height: 100%;
+            box-shadow: 2px 5px 15px 10px rgba(112, 128, 144, 0.507);
         }
         #heading-image{
             display: inline-block;
@@ -145,18 +151,19 @@
             width: 80%;
             height: 80%;
             text-decoration: none;
-            -moz-border-radius: 30px;
-            -webkit-border-radius: 30px;
-            border-radius: 30px;
+            -moz-border-radius: 10px;
+            -webkit-border-radius: 10px;
+            border-radius: 10px;
+            margin-top: 10px;
         }
         #vdo-q{
             width: 80%;
             height: 80%;
             text-decoration: none;
-            -moz-border-radius: 30px;
-            -webkit-border-radius: 30px;
-            border-radius: 30px;
-            margin-bottom: 5px;
+            -moz-border-radius: 10px;
+            -webkit-border-radius: 10px;
+            border-radius: 10px;
+            margin-bottom: 10px;
         }
         #post-q{
             text-decoration: none;
@@ -171,6 +178,10 @@
         #no-media{
             color: rgba(0, 13, 255, 0.455);
             margin: 15px;
+        }
+        #newPost-icon{
+            height: 30px;
+            width: 30px;
         }
 
     </style>
@@ -187,7 +198,7 @@
             $(".read-less").hide();
             $(".media").hide();
             $(".hide-media").hide();
-            $(".post").on('click',function(event){
+            $(".post-touch").on('click',function(event){
                 event.stopPropagation();
                 event.stopImmediatePropagation();
                 $('.post-body', this).slideToggle(500);
@@ -245,8 +256,8 @@
     </nav>
     
     <div class="container" id="maindiv">
-            <div align="right" id="post-a-post">
-                <p style="color: cornflowerblue" data-toggle="modal" data-target="#myModal">add new post</p>
+            <div align="right" id="post-a-post" class="container">
+                <p style="color: cornflowerblue" data-toggle="modal" data-target="#myModal">add new post <img src="/imges/icons/add-post3.png" alt="newPost" id="newPost-icon"></p>
             </div><br>
             <!--Modal contents start here-->
             <div class="modal fade" id="myModal" role="dialog">
@@ -291,59 +302,77 @@
             <!--Modal contents end here-->
 
             <div>
-                {% for i in range(post|length) %}
-                    <div class="post" id="post">
+                {% for i in range(post|length) | reverse %}
+                    <div class="post container" id="post">
                         <div class="container small-post" id="small-post">
                             <div class="row" id="post-heading">
                                 <div id="heading-image">
-                                    <a href="/imges/profilePics/{{ post[i][0] }}"><img src="/imges/profilePics/{{ post[i][0] }}" alt="profile pic" id="profile-image"></a>
+                                    <a href="#"><img src="/imges/profilePics/{{ post[i][0] }}" alt="profile pic" id="profile-image" data-toggle="modal" data-target="#dpModal"></a>
+                                </div>
+                                <div class="modal fade" id="dpModal" role="dialog" style="background-color: rgba(255, 166, 0, 0.575); height: 100%; width: 100%;">
+                                    <div class="modal-dialog">
+                                        
+                                    <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header" id="head-modal">
+                                                <button type="button" class="close" data-dismiss="modal" style="color: black; font-weight: bold; font-size: 250%;">&times;</button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <img src="/imges/profilePics/{{ post[i][0] }}" alt="User dp" class="avatar_modal">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div id="profile-name">
                                     <h4 style="color: rgba(0, 72, 255, 0.816)">{{ post[i][1] }}</h4>
                                 </div>
-                                <hr>
                             </div>
+                        </div>
+                        <hr>
+                        <div class="post-touch container" id="post-touch">
                             <div class="container short-desc" id="short-desc">
                                 <h4>{{ post[i][2] }}</h4>
                                 <p style="color: rgba(0, 0, 255, 0.653);" class="read-more" id="read-more">read more..</p>
                                 <p style="color: rgba(255, 0, 0, 0.653);" class="read-less" id="read-less">shrink text..</p>
                             </div>
-                        </div>
-                        <hr>
-                        <div class="container post-body" id="post-body">
-                            <p>{{ post[i][3] }}</p>
+                            <hr>
+                            <div class="post-body" id="post-body">
+                                <p>{{ post[i][3] }}</p>
 
-                            <p class="show-media" id="show-media" style="color: rgba(0, 0, 255, 0.653)">show media..</p>
-                            <p class="hide-media" id="hide-media" style="color: rgba(255, 0, 0, 0.653)">hide media..</p>
+                                <p class="show-media" id="show-media" style="color: rgba(0, 0, 255, 0.653)">show media..</p>
+                                <p class="hide-media" id="hide-media" style="color: rgba(255, 0, 0, 0.653)">hide media..</p>
 
-                            <div class="container media" id="media">
-                                {% if post[i][4]|length %}
-                                    <div align="center">
-                                        <a href="/posts/images/{{ post[i][4] }}"><img src="/posts/images/{{ post[i][4] }}" alt="" id="img-q"></a>
-                                    </div>
-                                {% else %}
-                                    
-                                    <div align="center">
-                                        <p id="no-media">No photo available for this post</p>
-                                    </div>
-                                    
-                                {% endif %}
+                                <hr>
 
-                                <br>
+                                <div class="media" id="media" style="background-color: rgba(112, 128, 144, 0.294);-moz-border-radius: 15px; -webkit-border-radius: 15px; border-radius: 15px; margin-bottom: 10px">
+                                    {% if post[i][4]|length %}
+                                        <div align="center">
+                                            <a href="/posts/images/{{ post[i][4] }}"><img src="/posts/images/{{ post[i][4] }}" alt="" id="img-q"></a>
+                                        </div>
+                                    {% else %}
+                                        
+                                        <div align="center">
+                                            <p id="no-media">No photo available for this post</p>
+                                        </div>
+                                        
+                                    {% endif %}
 
-                                {% if post[i][5]|length %}
-                                    <div>
-                                        <video controls height="100%" width="100%" id="vdo-q" align="center">
-                                            <source src="/posts/videos/{{ post[i][5] }}" type="video/mp4">
-                                        </video>
-                                    </div>
-                                {% else %}
-                                    
-                                    <div align="center">
-                                        <p id="no-media">No video available for this post</p>
-                                    </div>
-                                    
-                                {% endif %}
+                                    <br>
+
+                                    {% if post[i][5]|length %}
+                                        <div>
+                                            <video controls height="100%" width="100%" id="vdo-q" align="center">
+                                                <source src="/posts/videos/{{ post[i][5] }}" type="video/mp4">
+                                            </video>
+                                        </div>
+                                    {% else %}
+                                        
+                                        <div align="center">
+                                            <p id="no-media">No video available for this post</p>
+                                        </div>
+                                        
+                                    {% endif %}
+                                </div>
                             </div>
                         </div>
                     </div><br>
