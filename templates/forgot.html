@@ -211,12 +211,27 @@
             /*box-shadow: 1px 5px 10px 2px slategrey;*/
             border-radius: 5px;
         }
+        .preloader{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background-image: url('/pwa_logo/loading.gif');
+            background-repeat: no-repeat; 
+            background-color: none;
+            background-position: center;
+        }
     </style>
     <script>
         /*function msg(){
             alert("!! NOTICE !!\n\nMust enter valid \"Email Id\" and \"Phone Number\".\nEmail and Phone Number will be used to provide you your \"Username\" and will be used for future \"Contacting\".");
         }*/
         $(document).ready(function(){
+            $(window).ready(function(){
+                $(".preloader").fadeOut(1500);
+            });
             $(function () {
                 $('[data-toggle="tooltip"]').tooltip()
             });
@@ -229,6 +244,7 @@
     </script>
 </head>
 <body align="center" onload="msg()">
+    <div class="preloader"></div>
         <div>
             <nav class="navbar navbar-default" id="navbar">
                 <div class="container-fluid">

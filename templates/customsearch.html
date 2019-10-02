@@ -64,7 +64,7 @@
             z-index: 9999;
             background-image: url('/pwa_logo/loading4.gif');
             background-repeat: no-repeat; 
-            background-color: rgba(255, 255, 255, 0.966);
+            background-color: none;
             background-position: center;
         }
         #search-bar-container{
@@ -112,7 +112,7 @@
     <script>
         $(document).ready(function(){
             $(window).ready(function(){
-                $(".preloader").delay(1500).fadeOut(500);
+                $(".preloader").fadeOut(1500);
             });
             $("#unfold").hide()
             $("#navbar").hide();
@@ -142,7 +142,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>                        
                 </button>
-                <a class="navbar-brand" href="#" id="title"><img src="/imges/gp2.gif" alt="GangPayee"></a>
+                <a class="navbar-brand" href="/about" id="title"><img src="/imges/gp2.gif" alt="GangPayee"></a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
