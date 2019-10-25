@@ -2,7 +2,7 @@ import os
 import loginDB
 
 def deleteRedundantImages():
-	folder = 'static/imges/profilePics'
+	folder = './static/imges/profilePics'
 
 
 	images = os.listdir(folder)

@@ -69,7 +69,7 @@
             z-index: 9999;
             background-image: url('/pwa_logo/loading2.gif');
             background-repeat: no-repeat; 
-            background-color: none;
+            background-color: whitesmoke;
             background-position: center;
         }
         #post{
@@ -307,7 +307,7 @@
                         <div class="container small-post" id="small-post">
                             <div class="row" id="post-heading">
                                 <div id="heading-image">
-                                    <a href="/imges/profilePics/{{ post[i][0] }}"><img src="/imges/profilePics/{{ post[i][0] }}" alt="profile pic" id="profile-image"></a>
+                                    <a target="_blank" href="/imges/profilePics/{{ post[i][0] }}"><img src="/imges/profilePics/{{ post[i][0] }}" alt="profile pic" id="profile-image"></a>
                                 </div>
                                 
                                 <div id="profile-name">
@@ -334,7 +334,7 @@
                                 <div class="media" id="media" style="background-color: rgba(112, 128, 144, 0.294);-moz-border-radius: 15px; -webkit-border-radius: 15px; border-radius: 15px; margin-bottom: 10px">
                                     {% if post[i][4]|length %}
                                         <div align="center">
-                                            <a href="/posts/images/{{ post[i][4] }}"><img src="/posts/images/{{ post[i][4] }}" alt="" id="img-q"></a>
+                                            <a target="_blank" href="/posts/images/{{ post[i][4] }}"><img src="/posts/images/{{ post[i][4] }}" alt="" id="img-q"></a>
                                         </div>
                                     {% else %}
                                         
