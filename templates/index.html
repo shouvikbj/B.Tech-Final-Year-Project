@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <link rel="manifest" href="/manifest.json">
     <!--<script>
         if (location.hostname === 'localhost:5001' && location.protocol !== 'https:') {
@@ -15,6 +16,9 @@
     </script>-->
     <title>Index Page</title>
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
         #home{
             background-color: blueviolet;
             color: white;
@@ -183,7 +187,24 @@
             height: 30px;
             width: 30px;
         }
-
+        #scroll-top{
+            position: fixed;
+            bottom: 15px;
+            right: 15px;
+            z-index: 99;
+            font-size: 110%;
+            border: none;
+            outline: none;
+            background-color: rgba(0, 0, 255, 0.424);
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 4px;
+            font-weight: bold;
+            text-decoration: none;
+            -moz-border-radius: 30px;
+            -webkit-border-radius: 30px;
+            border-radius: 30px;
+        }
     </style>
     <script>
         $(document).ready(function(){
@@ -217,10 +238,19 @@
                 //$("#maindiv").append(post);
                 $("#maindiv").append(post.clone());
             });*/
+            $("#scroll-top").hide();
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 0) {
+                    $('#scroll-top').fadeIn();
+                } else {
+                    $('#scroll-top').fadeOut();
+                }
+            });
         });
     </script>
 </head>
 <body align="center" id="body">
+    <div id="to-top"></div>
     <div class="preloader"></div>
     <nav class="navbar navbar-default" id="navbar">
         <div class="container-fluid">
@@ -364,6 +394,7 @@
                         </div>
                     </div><br>
                 {% endfor %}
+                <button id="scroll-top"><a href="#to-top"><i class="fas fa-arrow-up" style="font-size:24px;color: rgb(255, 251, 0);"></i></a></button>
             </div>
             <div></div>
     </div>
